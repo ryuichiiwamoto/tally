@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>タリー 横浜FM–神戸</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap');
+:root{
+  --turf:#0E1A16; --panel:#16241F; --panel2:#1D302A; --line:#2E443B;
+  --chalk:#E9F0EA; --dim:#8CA096; --kobe:#B8203F; --yfm:#3B6BD6; --amber:#E5B143;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;background:var(--turf);}
+body{
+  color:var(--chalk);font-family:'IBM Plex Sans JP',system-ui,-apple-system,sans-serif;
+  padding:calc(env(safe-area-inset-top) + 8px) 12px calc(env(safe-area-inset-bottom) + 18px);
+  max-width:560px;margin:0 auto;-webkit-user-select:none;user-select:none;
+}
+.eyebrow{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;}
+.clockbar{display:flex;align-items:flex-end;gap:12px;margin-top:2px;border-bottom:1px solid var(--line);padding-bottom:10px;}
+.clock{font-family:'Oswald',sans-serif;font-size:44px;line-height:.95;font-weight:600;font-variant-numeric:tabular-nums;}
+.clock .sec{font-size:22px;color:var(--dim);margin-left:2px;}
+.ctl{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end;}
+.mini{background:var(--panel);border:1px solid var(--line);color:var(--chalk);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:500;font-family:inherit;}
+.mini.on{background:var(--chalk);color:var(--turf);border-color:var(--chalk);}
+.mini:disabled{opacity:.35;}
+.tabs{display:flex;gap:4px;margin:10px 0 12px;}
+.tab{flex:1;padding:9px 0;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--dim);font-size:13px;font-family:inherit;font-weight:500;}
+.tab.on{background:var(--panel2);color:var(--chalk);border-color:var(--panel2);}
+.block{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 12px 12px;margin-bottom:10px;}
+.blabel{font-size:12px;color:var(--dim);letter-spacing:.04em;display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+.score{font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;font-variant-numeric:tabular-nums;color:var(--chalk);white-space:nowrap;}
+.sub{color:var(--dim);font-size:12px;}
+.gwrap{display:flex;flex-wrap:wrap;gap:5px;min-height:26px;margin:6px 0 0;}
+.gempty{color:var(--line);font-size:16px;margin:5px 0;display:block;}
+.pills{display:flex;gap:6px;margin:9px 0 8px;}
+.pill{flex:1;padding:9px 0;border-radius:7px;font-size:12px;font-family:inherit;border:1px solid var(--line);background:transparent;color:var(--dim);font-weight:500;}
+.pill.on{background:var(--amber);border-color:var(--amber);color:#231A05;font-weight:600;}
+.btns{display:flex;gap:8px;}
+.big{flex:1;min-height:60px;border-radius:10px;border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;letter-spacing:.05em;transition:transform .07s ease,filter .07s ease;}
+.big:active{transform:scale(.96);filter:brightness(1.25);}
+.big.k{background:var(--kobe);} .big.y{background:var(--yfm);}
+.big.n{background:var(--panel2);border:1px solid var(--line);color:var(--chalk);}
+.big.a{background:var(--amber);color:#231A05;}
+.footer{display:flex;align-items:center;gap:8px;margin-top:12px;border-top:1px solid var(--line);padding-top:10px;}
+.lastev{font-size:11px;color:var(--dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.savedot{color:var(--amber);letter-spacing:.06em;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;font-weight:500;color:var(--dim);font-size:11px;padding:6px 4px;border-bottom:1px solid var(--line);}
+td{padding:8px 4px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;}
+td.num{font-family:'Oswald',sans-serif;font-size:16px;}
+.hero{font-family:'Oswald',sans-serif;font-size:40px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1;margin:4px 0 2px;}
+.rowlab{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);}
+.chk{border-bottom:1px solid var(--line);padding:10px 0;}
+.chk:last-child{border-bottom:none;}
+.chk p{margin:0 0 8px;font-size:13px;line-height:1.45;}
+.stamp{font-family:'Oswald',sans-serif;color:var(--amber);font-size:13px;}
+.opts{display:flex;flex-wrap:wrap;gap:6px;}
+.opt{min-height:46px;padding:0 13px;border-radius:9px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--chalk);font-size:13px;font-family:inherit;font-weight:500;
+  transition:transform .07s ease,filter .07s ease;}
+.opt:active{transform:scale(.95);filter:brightness(1.3);}
+.opt.memo{color:var(--dim);background:transparent;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.chip{border:1px solid var(--amber);background:transparent;color:var(--amber);
+  border-radius:999px;padding:6px 11px;font-size:11px;font-family:inherit;line-height:1;}
+.chip .m{font-family:'Oswald',sans-serif;font-weight:600;margin-right:4px;}
+.chip .x{color:var(--dim);margin-left:6px;}
+input,textarea{background:var(--panel2);border:1px solid var(--line);color:var(--chalk);border-radius:7px;padding:9px;font-size:13px;font-family:inherit;-webkit-user-select:text;user-select:text;}
+input{width:100%;}
+textarea{width:100%;height:250px;font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px;line-height:1.6;}
+.note{font-size:11px;color:var(--dim);line-height:1.6;margin:8px 0 0;}
+button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){.big{transition:none;}}
+</style>
+</head>
+<body>
+
+<div class="eyebrow">横浜FM — 神戸 / 2026.8.22 日産スタジアム</div>
+<div class="clockbar">
+  <div class="clock"><span id="mm">00</span><span class="sec">:<span id="ss">00</span></span></div>
+  <div class="ctl">
+    <button class="mini" id="bRun">開始</button>
+    <button class="mini" id="bDown">−1分</button>
+    <button class="mini" id="bUp">+1分</button>
+    <button class="mini" id="bHalf">後半</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab on" data-tab="rec">記録</button>
+  <button class="tab" data-tab="sum">集計</button>
+  <button class="tab" data-tab="chk">観察</button>
+  <button class="tab" data-tab="out">書き出し</button>
+</div>
+
+<div id="pane-rec">
+  <div class="block">
+    <div class="blabel"><span>セカンドボール回収</span><span class="score" id="s2"></span></div>
+    <div class="gwrap" id="g2k"></div>
+    <div class="gwrap" id="g2y"></div>
+    <div class="pills" id="zones"></div>
+    <div class="btns">
+      <button class="big k" data-log="sec-kobe">神戸</button>
+      <button class="big y" data-log="sec-yfm">横浜</button>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="blabel"><span>神戸の危険なロスト（自陣・中央）</span><span class="score" id="sL"></span></div>
+    <div class="gwrap" id="gL"></div>
+    <div class="btns">
+      <button class="big n" data-log="loss-0">ロスト</button>
+      <button class="big a" data-log="loss-1">→ シュート</button>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="blabel"><span>神戸の右（髙橋・濱﨑）を攻略</span><span class="score" id="sR"></span></div>
+    <div class="gwrap" id="gR"></div>
+    <div class="btns">
+      <button class="big n" data-log="right-try">仕掛け</button>
+      <button class="big n" data-log="right-cross">クロス</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="lastev" id="lastev">まだ記録なし</span>
+    <button class="mini" id="bUndo">取り消し</button>
+    <button class="mini" id="bReset">全消去</button>
+  </div>
+</div>
+
+<div id="pane-sum" hidden>
+  <div class="block">
+    <div class="blabel"><span>横浜のセカンド回収率</span></div>
+    <div class="hero" id="rate">—</div>
+    <div class="rowlab"><span id="rk">神戸 0</span><span id="ry">横浜 0</span></div>
+  </div>
+  <div class="block">
+    <div class="blabel"><span>エリア別</span></div>
+    <table><thead><tr><th></th><th>神戸</th><th>横浜</th><th>横浜%</th></tr></thead><tbody id="tz"></tbody></table>
+  </div>
+  <div class="block">
+    <div class="blabel"><span>前後半</span></div>
+    <table><thead><tr><th></th><th>セカンド</th><th>ロスト</th><th>右</th></tr></thead><tbody id="th"></tbody></table>
+    <div class="rowlab" style="margin-top:8px"><span>ロスト＝回数/シュート到達</span><span>右＝仕掛け/クロス</span></div>
+  </div>
+</div>
+
+<div id="pane-chk" hidden><div class="block" id="checks"></div></div>
+
+<div id="pane-out" hidden>
+  <div class="block">
+    <div class="btns" style="margin-bottom:10px">
+      <button class="big a" id="bCopy">テキストをコピー</button>
+    </div>
+    <textarea id="outText" readonly></textarea>
+    <p class="note">終了後はこのテキストをコピーして共有できます。<br>
+    バックアップ用の復元コードは下です。別の端末に移すときは、これをコピーして貼り付け→復元。</p>
+    <textarea id="backup" style="height:90px" readonly></textarea>
+    <div class="btns" style="margin-top:8px">
+      <button class="mini" id="bImport" style="flex:1;min-height:44px">貼り付けて復元</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+const KEY = "tally_yfm_kobe_20260822";
+const ZONES = [{id:"def",label:"自陣"},{id:"mid",label:"中盤"},{id:"att",label:"敵陣"}];
+const CHECKS = [
+  {id:"c1",text:"小松の守備の掛け方",hint:"人基準か、コース限定か",
+   opts:["GKまで直進","コース切って弧","前に出ない"]},
+  {id:"c2",text:"鍬先脇で天野が前を向けたか",hint:"最初の3回",
+   opts:["楽に前向き","時々","消されている"]},
+  {id:"c3",text:"神戸の最終ラインの高さ",hint:"横浜が自陣で保持して落ち着いた瞬間に。15/30/60/75分＋変化を感じた時",
+   opts:["高い(HW越え)","中間","低い"]},
+  {id:"c4",text:"前に出るIH",hint:"背後が空くのはどちら側か",
+   opts:["井手口","郷家","両方","出ない"]},
+  {id:"c5",text:"神戸の交代",hint:"押した時刻が記録されます",
+   opts:["攻撃的カード","守備固め","同時2枚以上"]},
+  {id:"c6",text:"神戸が追いかける展開になったら",hint:"神戸ビハインド時の変化",
+   opts:["3バック可変","4バックのまま","ロングスロー増","パワープレー"]},
+  {id:"c7",text:"神戸がリードしたら",hint:"締め方",
+   opts:["ライン下げる","前から続行","時間を使う"]}
+];
+function entriesOf(id){
+  const v = state.checks[id] || {};
+  if (Array.isArray(v.entries)) return v.entries;
+  if (v.min != null) return [{min:v.min, opt:"記録"}];   // 旧データの移行
+  return [];
+}
+
+let state = { events:[], checks:{}, half:1, secs:0, zone:"mid", updated:0 };
+let running = false, tick = null;
+
+/* ---------- persistence: 端末内(localStorage)を主、クラウドがあれば従 ---------- */
+function saveLocal(){
+  state.updated = Date.now();
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  if (window.storage) {
+    clearTimeout(saveLocal._t);
+    saveLocal._t = setTimeout(async () => {
+      try { await window.storage.set(KEY, JSON.stringify(state), false); } catch(e){}
+    }, 800);
+  }
+  flashSaved();
+}
+async function load(){
+  let a=null,b=null;
+  try { const v=localStorage.getItem(KEY); if(v) a=JSON.parse(v); } catch(e){}
+  try { if(window.storage){ const r=await window.storage.get(KEY,false); if(r&&r.value) b=JSON.parse(r.value); } } catch(e){}
+  const pick = !a ? b : !b ? a : ((a.updated||0) >= (b.updated||0) ? a : b);
+  if (pick) state = Object.assign(state, pick);
+  render();
+}
+let saveFlag=false;
+function flashSaved(){ saveFlag=true; setTimeout(()=>{saveFlag=false; paintLast();},1200); }
+
+/* ---------- clock ---------- */
+function setRunning(v){
+  running=v;
+  document.getElementById("bRun").textContent = v ? "停止" : "開始";
+  document.getElementById("bRun").classList.toggle("on", v);
+  clearInterval(tick);
+  if(v) tick=setInterval(()=>{ state.secs++; paintClock(); if(state.secs%10===0) saveLocal(); },1000);
+}
+function minute(){ return Math.floor(state.secs/60); }
+function paintClock(){
+  document.getElementById("mm").textContent = String(minute()).padStart(2,"0");
+  document.getElementById("ss").textContent = String(state.secs%60).padStart(2,"0");
+}
+
+/* ---------- tally marks ---------- */
+function gate(el, n, color){
+  if(!n){ el.innerHTML = '<span class="gempty">—</span>'; return; }
+  let h="";
+  const groups=[]; for(let i=0;i<Math.floor(n/5);i++) groups.push(5);
+  if(n%5) groups.push(n%5);
+  for(const g of groups){
+    let s='<svg width="30" height="26" viewBox="0 0 30 26">';
+    for(let k=0;k<Math.min(g,4);k++)
+      s+=`<line x1="${4+k*6}" y1="3" x2="${4+k*6}" y2="23" stroke="${color}" stroke-width="2.4" stroke-linecap="round"/>`;
+    if(g===5) s+=`<line x1="1" y1="22" x2="27" y2="4" stroke="${color}" stroke-width="2.4" stroke-linecap="round"/>`;
+    h+=s+"</svg>";
+  }
+  el.innerHTML=h;
+}
+
+/* ---------- counting ---------- */
+const c = f => state.events.filter(f).length;
+const secK = ()=>c(e=>e.type==="second"&&e.team==="kobe");
+const secY = ()=>c(e=>e.type==="second"&&e.team==="yfm");
+const lossA= ()=>c(e=>e.type==="loss");
+const lossS= ()=>c(e=>e.type==="loss"&&e.shot);
+const rTry = ()=>c(e=>e.type==="right"&&e.kind==="attempt");
+const rCr  = ()=>c(e=>e.type==="right"&&e.kind==="cross");
+
+function log(ev){
+  if(navigator.vibrate) navigator.vibrate(12);
+  ev.half=state.half; ev.min=minute(); ev.id=Date.now()+Math.random();
+  state.events.push(ev);
+  saveLocal(); render();
+}
+
+/* ---------- render ---------- */
+function paintLast(){
+  const e=state.events[state.events.length-1];
+  let t = !e ? "まだ記録なし"
+    : e.type==="second" ? `${e.min}' セカンド ${e.team==="kobe"?"神戸":"横浜"}`
+    : e.type==="loss" ? `${e.min}' 神戸ロスト${e.shot?"→シュート":""}`
+    : `${e.min}' 右${e.kind==="cross"?"クロス":"仕掛け"}`;
+  document.getElementById("lastev").innerHTML = t + (saveFlag?' <span class="savedot">・保存</span>':"");
+  document.getElementById("bUndo").disabled = !state.events.length;
+}
+
+function render(){
+  paintClock();
+  document.getElementById("bHalf").classList.toggle("on", state.half===2);
+
+  const k=secK(), y=secY(), tot=k+y;
+  document.getElementById("s2").innerHTML = `${k} － ${y}` + (tot?` <span class="sub">横浜${Math.round(y/tot*100)}%</span>`:"");
+  gate(document.getElementById("g2k"), k, "#B8203F");
+  gate(document.getElementById("g2y"), y, "#3B6BD6");
+  document.getElementById("sL").innerHTML = `${lossA()} <span class="sub">/ 決定機${lossS()}</span>`;
+  gate(document.getElementById("gL"), lossA(), "#E5B143");
+  document.getElementById("sR").innerHTML = `${rTry()} <span class="sub">/ クロス${rCr()}</span>`;
+  gate(document.getElementById("gR"), rTry(), "#E9F0EA");
+
+  // zones
+  const zw=document.getElementById("zones");
+  zw.innerHTML = ZONES.map(z=>`<button class="pill${state.zone===z.id?" on":""}" data-zone="${z.id}">${z.label}</button>`).join("");
+
+  // summary
+  const rt = tot?Math.round(y/tot*100):null;
+  const rEl=document.getElementById("rate");
+  rEl.textContent = rt===null?"—":rt+"%";
+  rEl.style.color = rt===null?"var(--line)":(rt>=50?"var(--yfm)":"var(--kobe)");
+  document.getElementById("rk").textContent="神戸 "+k;
+  document.getElementById("ry").textContent="横浜 "+y;
+  document.getElementById("tz").innerHTML = ZONES.map(z=>{
+    const a=c(e=>e.type==="second"&&e.team==="kobe"&&e.zone===z.id);
+    const b=c(e=>e.type==="second"&&e.team==="yfm"&&e.zone===z.id);
+    const t=a+b;
+    return `<tr><td>${z.label}</td><td class="num">${a}</td><td class="num">${b}</td><td>${t?Math.round(b/t*100)+"%":"—"}</td></tr>`;
+  }).join("");
+  document.getElementById("th").innerHTML = [1,2].map(h=>{
+    const f=e=>e.half===h;
+    const a=c(e=>f(e)&&e.type==="second"&&e.team==="kobe");
+    const b=c(e=>f(e)&&e.type==="second"&&e.team==="yfm");
+    const l=c(e=>f(e)&&e.type==="loss"), ls=c(e=>f(e)&&e.type==="loss"&&e.shot);
+    const t1=c(e=>f(e)&&e.type==="right"&&e.kind==="attempt");
+    const t2=c(e=>f(e)&&e.type==="right"&&e.kind==="cross");
+    return `<tr><td>${h===1?"前半":"後半"}</td><td class="num">${a}–${b}</td><td class="num">${l}<span class="sub">/${ls}</span></td><td class="num">${t1}<span class="sub">/${t2}</span></td></tr>`;
+  }).join("");
+
+  // checks
+  document.getElementById("checks").innerHTML = CHECKS.map(ch=>{
+    const v = state.checks[ch.id] || {};
+    const en = entriesOf(ch.id);
+    const chips = en.map((e,i)=>
+      `<button class="chip" data-delchip="${ch.id}|${i}"><span class="m">${e.min}'</span>${e.opt}<span class="x">✕</span></button>`
+    ).join("") + (v.note ? `<button class="chip" data-memo="${ch.id}">📝 ${v.note}<span class="x">編集</span></button>` : "");
+    return `<div class="chk">
+      <p>${ch.text}${ch.hint?` <span class="sub">${ch.hint}</span>`:""}</p>
+      <div class="opts">
+        ${ch.opts.map(o=>`<button class="opt" data-opt="${ch.id}|${o}">${o}</button>`).join("")}
+        <button class="opt memo" data-memo="${ch.id}">メモ</button>
+      </div>
+      ${chips?`<div class="chips">${chips}</div>`:""}
+    </div>`;
+  }).join("");
+
+  document.getElementById("outText").value = buildText();
+  document.getElementById("backup").value = JSON.stringify(state);
+  paintLast();
+}
+
+function buildText(){
+  const L=[]; const k=secK(),y=secY(),t=k+y;
+  L.push("横浜FM vs 神戸 / 2026.8.22 日産スタジアム","");
+  L.push("■ セカンドボール回収");
+  L.push(`合計  神戸 ${k} － ${y} 横浜FM`+(t?`（横浜 ${Math.round(y/t*100)}%）`:""));
+  ZONES.forEach(z=>{
+    const a=c(e=>e.type==="second"&&e.team==="kobe"&&e.zone===z.id);
+    const b=c(e=>e.type==="second"&&e.team==="yfm"&&e.zone===z.id);
+    if(a+b) L.push(`${z.label}  神戸 ${a} － ${b} 横浜FM`);
+  });
+  [1,2].forEach(h=>{
+    const a=c(e=>e.half===h&&e.type==="second"&&e.team==="kobe");
+    const b=c(e=>e.half===h&&e.type==="second"&&e.team==="yfm");
+    if(a+b) L.push(`${h===1?"前半":"後半"}  神戸 ${a} － ${b} 横浜FM`);
+  });
+  L.push("","■ 神戸の危険なロスト（自陣・中央）",`${lossA()}回 / うちシュート到達 ${lossS()}回`);
+  L.push("","■ 神戸の右サイド攻略",`仕掛け ${rTry()} / クロス到達 ${rCr()}`);
+  L.push("","■ タイムライン");
+  state.events.forEach(e=>{
+    let s=`${e.min}'`;
+    if(e.type==="second") s+=` セカンド ${e.team==="kobe"?"神戸":"横浜"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`;
+    if(e.type==="loss") s+=` 神戸ロスト${e.shot?" → シュート":""}`;
+    if(e.type==="right") s+=` 右サイド${e.kind==="cross"?" クロス":" 仕掛け"}`;
+    L.push(s);
+  });
+  const ns=CHECKS.filter(ch=>{const v=state.checks[ch.id]||{}; return entriesOf(ch.id).length||v.note;});
+  if(ns.length){ L.push("","■ 観察");
+    ns.forEach(ch=>{
+      const v=state.checks[ch.id]||{};
+      const en=entriesOf(ch.id);
+      L.push(`・${ch.text}`);
+      if(en.length) L.push("  "+en.map(e=>`${e.min}' ${e.opt}`).join(" / "));
+      if(v.note)    L.push("  メモ: "+v.note);
+    });
+  }
+  return L.join("\n");
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e=>{
+  const b=e.target.closest("button"); if(!b) return;
+
+  if(b.dataset.log){
+    const m=b.dataset.log;
+    if(m==="sec-kobe") log({type:"second",team:"kobe",zone:state.zone});
+    if(m==="sec-yfm")  log({type:"second",team:"yfm",zone:state.zone});
+    if(m==="loss-0")   log({type:"loss",shot:false});
+    if(m==="loss-1")   log({type:"loss",shot:true});
+    if(m==="right-try")   log({type:"right",kind:"attempt"});
+    if(m==="right-cross") log({type:"right",kind:"cross"});
+    return;
+  }
+  if(b.dataset.zone){ state.zone=b.dataset.zone; saveLocal(); render(); return; }
+  if(b.dataset.opt){
+    const [id,opt]=b.dataset.opt.split("|");
+    const en=entriesOf(id).slice();
+    en.push({min:minute(),opt:opt});
+    state.checks[id]=Object.assign({},state.checks[id],{entries:en,min:undefined});
+    if(navigator.vibrate) navigator.vibrate(12);
+    saveLocal(); render(); return;
+  }
+  if(b.dataset.delchip){
+    const [id,i]=b.dataset.delchip.split("|");
+    const en=entriesOf(id).slice();
+    en.splice(Number(i),1);
+    state.checks[id]=Object.assign({},state.checks[id],{entries:en,min:undefined});
+    saveLocal(); render(); return;
+  }
+  if(b.dataset.memo){
+    const id=b.dataset.memo;
+    const cur=(state.checks[id]||{}).note||"";
+    const s=prompt("メモ", cur);
+    if(s===null) return;
+    state.checks[id]=Object.assign({},state.checks[id],{note:s.trim()});
+    saveLocal(); render(); return;
+  }
+  if(b.dataset.tab){
+    document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t===b));
+    ["rec","sum","chk","out"].forEach(p=>{
+      document.getElementById("pane-"+p).hidden = (p!==b.dataset.tab);
+    });
+    return;
+  }
+  switch(b.id){
+    case "bRun": setRunning(!running); break;
+    case "bDown": state.secs=Math.max(0,state.secs-60); paintClock(); saveLocal(); break;
+    case "bUp": state.secs+=60; paintClock(); saveLocal(); break;
+    case "bHalf": state.half=2; state.secs=45*60; setRunning(true); saveLocal(); render(); break;
+    case "bUndo": state.events.pop(); saveLocal(); render(); break;
+    case "bReset":
+      if(confirm("記録を全部消します。よろしいですか？")){
+        state={events:[],checks:{},half:1,secs:0,zone:"mid",updated:0};
+        setRunning(false); saveLocal(); render();
+      }
+      break;
+    case "bCopy":
+      navigator.clipboard.writeText(buildText())
+        .then(()=>{b.textContent="コピーしました"; setTimeout(()=>b.textContent="テキストをコピー",1500);})
+        .catch(()=>{b.textContent="長押しで選択してコピー"; setTimeout(()=>b.textContent="テキストをコピー",2500);});
+      break;
+    case "bImport": {
+      const s=prompt("復元コードを貼り付けてください");
+      if(!s) return;
+      try{
+        const d=JSON.parse(s);
+        if(!d || !Array.isArray(d.events)) throw new Error("形式が違います");
+        state=Object.assign({events:[],checks:{},half:1,secs:0,zone:"mid",updated:0},d);
+        saveLocal(); render(); alert("復元しました");
+      }catch(err){ alert("復元できません。コード全体をコピーできているか確認してください。"); }
+      break;
+    }
+  }
+});
+
+document.addEventListener("input", e=>{
+  if(e.target.dataset && e.target.dataset.note){
+    const id=e.target.dataset.note;
+    state.checks[id]=Object.assign({},state.checks[id],{note:e.target.value});
+    saveLocal();
+    document.getElementById("outText").value=buildText();
+    document.getElementById("backup").value=JSON.stringify(state);
+  }
+});
+
+document.addEventListener("visibilitychange", ()=>{ if(document.hidden) saveLocal(); });
+window.addEventListener("pagehide", saveLocal);
+
+load();
+</script>
+</body>
+</html>
