@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>タリー 横浜FM–神戸</title>
+<title>タリー 横浜FM–福島（天皇杯）</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap');
 :root{
   --turf:#0E1A16; --panel:#16241F; --panel2:#1D302A; --line:#2E443B;
-  --chalk:#E9F0EA; --dim:#8CA096; --kobe:#B8203F; --yfm:#3B6BD6; --amber:#E5B143;
+  --chalk:#E9F0EA; --dim:#8CA096; --neg:#B8203F; --yfm:#3B6BD6; --amber:#E5B143;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{margin:0;background:var(--turf);}
@@ -20,11 +20,11 @@ body{
   max-width:560px;margin:0 auto;-webkit-user-select:none;user-select:none;
 }
 .eyebrow{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;}
-.clockbar{display:flex;align-items:flex-end;gap:12px;margin-top:2px;border-bottom:1px solid var(--line);padding-bottom:10px;}
+.clockbar{display:flex;align-items:flex-end;gap:10px;margin-top:2px;border-bottom:1px solid var(--line);padding-bottom:10px;}
 .clock{font-family:'Oswald',sans-serif;font-size:44px;line-height:.95;font-weight:600;font-variant-numeric:tabular-nums;}
 .clock .sec{font-size:22px;color:var(--dim);margin-left:2px;}
-.ctl{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end;}
-.mini{background:var(--panel);border:1px solid var(--line);color:var(--chalk);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:500;font-family:inherit;}
+.ctl{display:flex;gap:5px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end;}
+.mini{background:var(--panel);border:1px solid var(--line);color:var(--chalk);border-radius:8px;padding:8px 9px;font-size:12px;font-weight:500;font-family:inherit;}
 .mini.on{background:var(--chalk);color:var(--turf);border-color:var(--chalk);}
 .mini:disabled{opacity:.35;}
 .tabs{display:flex;gap:4px;margin:10px 0 12px;}
@@ -40,9 +40,9 @@ body{
 .pill{flex:1;padding:9px 0;border-radius:7px;font-size:12px;font-family:inherit;border:1px solid var(--line);background:transparent;color:var(--dim);font-weight:500;}
 .pill.on{background:var(--amber);border-color:var(--amber);color:#231A05;font-weight:600;}
 .btns{display:flex;gap:8px;}
-.big{flex:1;min-height:60px;border-radius:10px;border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;letter-spacing:.05em;transition:transform .07s ease,filter .07s ease;}
+.big{flex:1;min-height:60px;border-radius:10px;border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.04em;transition:transform .07s ease,filter .07s ease;}
 .big:active{transform:scale(.96);filter:brightness(1.25);}
-.big.k{background:var(--kobe);} .big.y{background:var(--yfm);}
+.big.k{background:var(--neg);} .big.y{background:var(--yfm);}
 .big.n{background:var(--panel2);border:1px solid var(--line);color:var(--chalk);}
 .big.a{background:var(--amber);color:#231A05;}
 .footer{display:flex;align-items:center;gap:8px;margin-top:12px;border-top:1px solid var(--line);padding-top:10px;}
@@ -57,16 +57,17 @@ td.num{font-family:'Oswald',sans-serif;font-size:16px;}
 .chk{border-bottom:1px solid var(--line);padding:10px 0;}
 .chk:last-child{border-bottom:none;}
 .chk p{margin:0 0 8px;font-size:13px;line-height:1.45;}
-.stamp{font-family:'Oswald',sans-serif;color:var(--amber);font-size:13px;}
 .opts{display:flex;flex-wrap:wrap;gap:6px;}
 .opt{min-height:46px;padding:0 13px;border-radius:9px;border:1px solid var(--line);
   background:var(--panel2);color:var(--chalk);font-size:13px;font-family:inherit;font-weight:500;
   transition:transform .07s ease,filter .07s ease;}
 .opt:active{transform:scale(.95);filter:brightness(1.3);}
 .opt.memo{color:var(--dim);background:transparent;}
-.help{width:20px;height:20px;padding:0;border-radius:50%;border:1px solid var(--line);
-  background:transparent;color:var(--dim);font-size:11px;font-family:'Oswald',sans-serif;
-  line-height:1;vertical-align:middle;margin-left:2px;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.chip{border:1px solid var(--amber);background:transparent;color:var(--amber);
+  border-radius:999px;padding:6px 11px;font-size:11px;font-family:inherit;line-height:1;}
+.chip .m{font-family:'Oswald',sans-serif;font-weight:600;margin-right:4px;}
+.chip .x{color:var(--dim);margin-left:6px;}
 .def h3{font-size:14px;margin:0 0 6px;color:var(--chalk);font-weight:600;}
 .def h3 .tag{font-family:'Oswald',sans-serif;font-size:11px;color:var(--amber);
   border:1px solid var(--amber);border-radius:4px;padding:2px 6px;margin-right:7px;vertical-align:2px;}
@@ -78,22 +79,17 @@ td.num{font-family:'Oswald',sans-serif;font-size:16px;}
 .def .no{color:#E0788A;font-weight:600;}
 .def table{margin:2px 0 10px;}
 .def td:first-child{width:62%;}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
-.chip{border:1px solid var(--amber);background:transparent;color:var(--amber);
-  border-radius:999px;padding:6px 11px;font-size:11px;font-family:inherit;line-height:1;}
-.chip .m{font-family:'Oswald',sans-serif;font-weight:600;margin-right:4px;}
-.chip .x{color:var(--dim);margin-left:6px;}
 input,textarea{background:var(--panel2);border:1px solid var(--line);color:var(--chalk);border-radius:7px;padding:9px;font-size:13px;font-family:inherit;-webkit-user-select:text;user-select:text;}
 input{width:100%;}
 textarea{width:100%;height:250px;font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px;line-height:1.6;}
 .note{font-size:11px;color:var(--dim);line-height:1.6;margin:8px 0 0;}
 button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
-@media (prefers-reduced-motion:reduce){.big{transition:none;}}
+@media (prefers-reduced-motion:reduce){.big,.opt{transition:none;}}
 </style>
 </head>
 <body>
 
-<div class="eyebrow">横浜FM — 神戸 / 2026.8.22 日産スタジアム</div>
+<div class="eyebrow">横浜FM — 福島 / 天皇杯2回戦 8.26 日産</div>
 <div class="clockbar">
   <div class="clock"><span id="mm">00</span><span class="sec">:<span id="ss">00</span></span></div>
   <div class="ctl">
@@ -101,6 +97,7 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
     <button class="mini" id="bDown">−1分</button>
     <button class="mini" id="bUp">+1分</button>
     <button class="mini" id="bHalf">後半</button>
+    <button class="mini" id="bET">延長</button>
   </div>
 </div>
 
@@ -114,31 +111,31 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <div id="pane-rec">
   <div class="block">
-    <div class="blabel"><span>セカンドボール回収 <button class="help" data-tab="def">?</button></span><span class="score" id="s2"></span></div>
-    <div class="gwrap" id="g2k"></div>
-    <div class="gwrap" id="g2y"></div>
-    <div class="pills" id="zones"></div>
+    <div class="blabel"><span>敵陣プレス（マリノス） <button class="help" data-tab="def">?</button></span><span class="score" id="sP"></span></div>
+    <div class="gwrap" id="gPw"></div>
+    <div class="gwrap" id="gPl"></div>
     <div class="btns">
-      <button class="big k" data-log="sec-kobe">神戸</button>
-      <button class="big y" data-log="sec-yfm">横浜</button>
+      <button class="big y" data-log="press-win">敵陣で奪った</button>
+      <button class="big k" data-log="press-lost">剥がされた</button>
     </div>
   </div>
 
   <div class="block">
-    <div class="blabel"><span>神戸の危険なロスト <button class="help" data-tab="def">?</button></span><span class="score" id="sL"></span></div>
+    <div class="blabel"><span>崩しの経路（シュート到達） <button class="help" data-tab="def">?</button></span><span class="score" id="sC"></span></div>
+    <div class="gwrap" id="gC"></div>
+    <div class="pills" id="zones"></div>
+    <div class="btns">
+      <button class="big n" data-log="chance-shot">シュート</button>
+      <button class="big a" data-log="chance-big">決定機</button>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="blabel"><span>マリノスの危険なロスト <button class="help" data-tab="def">?</button></span><span class="score" id="sL"></span></div>
     <div class="gwrap" id="gL"></div>
     <div class="btns">
       <button class="big n" data-log="loss-0">ロスト</button>
-      <button class="big a" data-log="loss-1">→ シュート</button>
-    </div>
-  </div>
-
-  <div class="block">
-    <div class="blabel"><span>神戸の右を攻略 <button class="help" data-tab="def">?</button></span><span class="score" id="sR"></span></div>
-    <div class="gwrap" id="gR"></div>
-    <div class="btns">
-      <button class="big n" data-log="right-try">仕掛け</button>
-      <button class="big n" data-log="right-cross">クロス</button>
+      <button class="big k" data-log="loss-1">→ 被シュート</button>
     </div>
   </div>
 
@@ -151,18 +148,18 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <div id="pane-sum" hidden>
   <div class="block">
-    <div class="blabel"><span>横浜のセカンド回収率</span></div>
+    <div class="blabel"><span>敵陣プレスの成功率</span></div>
     <div class="hero" id="rate">—</div>
-    <div class="rowlab"><span id="rk">神戸 0</span><span id="ry">横浜 0</span></div>
+    <div class="rowlab"><span id="rw">奪取 0</span><span id="rl">剥がされ 0</span></div>
   </div>
   <div class="block">
-    <div class="blabel"><span>エリア別</span></div>
-    <table><thead><tr><th></th><th>神戸</th><th>横浜</th><th>横浜%</th></tr></thead><tbody id="tz"></tbody></table>
+    <div class="blabel"><span>崩しの経路（エリア別）</span></div>
+    <table><thead><tr><th></th><th>シュート</th><th>決定機</th></tr></thead><tbody id="tz"></tbody></table>
   </div>
   <div class="block">
-    <div class="blabel"><span>前後半</span></div>
-    <table><thead><tr><th></th><th>セカンド</th><th>ロスト</th><th>右</th></tr></thead><tbody id="th"></tbody></table>
-    <div class="rowlab" style="margin-top:8px"><span>ロスト＝回数/シュート到達</span><span>右＝仕掛け/クロス</span></div>
+    <div class="blabel"><span>時間帯別</span></div>
+    <table><thead><tr><th></th><th>プレス</th><th>崩し</th><th>ロスト</th></tr></thead><tbody id="th"></tbody></table>
+    <div class="rowlab" style="margin-top:8px"><span>プレス＝奪取/剥がされ</span><span>崩し＝計/決定機・ロスト＝計/被シュート</span></div>
   </div>
 </div>
 
@@ -171,62 +168,47 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 <div id="pane-def" hidden>
 
   <div class="block def">
-    <h3><span class="tag">1</span>セカンドボール回収</h3>
-    <p>ロングボール・クリア・ロングスローが競り合われたあと、<strong>最初に地上でコントロールしたのはどちらか</strong>。競り合いそのものの勝敗ではなく、その後のボールを誰が握ったかを取る。</p>
-    <p class="q">エリアは競り合いが起きた位置。横浜から見て自陣／中盤／敵陣。押す前にエリアを選ぶ。選び忘れると前のまま入るので注意。</p>
+    <h3><span class="tag">1</span>敵陣プレス（マリノス）</h3>
+    <p>控え組が主力と同じ強度・設計で前から奪えるかを測る。福島は繋ぎたがるチームなので、絶好のテスト相手。</p>
     <ul>
-      <li><span class="yes">○</span> 競り合い後、こぼれを拾って前を向けた</li>
-      <li><span class="yes">○</span> 空中戦に負けたが、落ちたボールは回収した → 横浜</li>
-      <li><span class="no">✕</span> 直接インターセプト（競り合いが発生していない）</li>
-      <li><span class="no">✕</span> そのままタッチを割った</li>
+      <li><span class="yes">奪った</span> — 敵陣（相手コート）でプレスから奪取し、マイボールにした</li>
+      <li><span class="no">剥がされた</span> — 前から行ったが、繋がれて中盤ラインを越えられた</li>
     </ul>
-    <p class="q">両チーム取るのが必須。分母がないと「拾えている感」だけで終わる。</p>
+    <p class="q">数えるのは「前から行った局面」だけ。マリノスがブロックを組んで構えている時間は対象外。福島が蹴っ飛ばしただけのクリアは「奪った」に含めない（プレスの成果ではないので）。</p>
+    <p class="q">目安：成功率50%超なら控え組でも主力の型が機能している。30%台なら剥がされて撤退、の繰り返しになっているはず。</p>
   </div>
 
   <div class="block def">
-    <h3><span class="tag">2</span>神戸の危険なロスト</h3>
-    <p>次の3つが<strong>すべて</strong>揃ったときだけ1回。</p>
+    <h3><span class="tag">2</span>崩しの経路（シュート到達）</h3>
+    <p>マリノスの攻撃が<strong>どのレーンからシュートまで到達したか</strong>。エリアを選んでから押す。左＝三井寺側想定、右＝近藤側想定（実際の先発に合わせて読み替え）。</p>
     <ul>
-      <li><strong>自陣</strong> — ハーフウェイラインより神戸側</li>
-      <li><strong>中央</strong> — 縦3分割の真ん中。サイドライン際は含めない</li>
-      <li><strong>横浜が前を向けた</strong> — 奪って前方にプレーできる状態</li>
+      <li><strong>シュート</strong> — 流れの中からシュートまで到達（枠内外は問わない）</li>
+      <li><strong>決定機</strong> — 1点ものの決定機（GKと1対1、無人のゴールへのシュートなど）。この場合シュートは押さなくてよい。集計側で合算</li>
     </ul>
-    <p class="q">3つ目が一番大事。「神戸のミスの数」ではなく「横浜がチャンスに変えられる形で失った数」を測る。</p>
-    <table>
-      <tr><td>前川のキックミスが直接相手へ</td><td><span class="yes">○</span></td></tr>
-      <tr><td>CBがサイドに逃げてタッチへ</td><td><span class="no">✕</span></td></tr>
-      <tr><td>奪ったがすぐ奪い返された</td><td><span class="no">✕</span></td></tr>
-      <tr><td>ハイプレスでGKから奪取</td><td><span class="yes">○</span></td></tr>
-    </table>
-    <p><strong>ボタンはどちらか一方だけ。</strong>その流れで10秒以内にシュートまで行けば「→シュート」、行かなければ「ロスト」。集計側で合算する。</p>
-    <p class="q">井手口（アンカー）が前に出た直後の失いが特に狙い目。迷ったら押さない。厳しめに取ったほうが数字の意味がはっきりする。前半5回以上＝未修正、2回以下＝修正済みで前プレの設計を見直す。</p>
+    <p class="q">セットプレー（CK・FK直接）は含めない。流れの中の崩しだけ。目的は「控え組の崩しがどちらのサイド経由で機能しているか」を残すこと。試合後、誰がアピールしたかの裏付けになる。</p>
   </div>
 
   <div class="block def">
-    <h3><span class="tag">3</span>神戸の右を攻略</h3>
-    <p>髙橋壱晟（RSB・本職ボランチで初先発）とジェアン・パトリッキ（右WG・戻りが遅い）のゾーン＝<strong>横浜から見て左サイド</strong>で、意図的に仕掛けられているか。こちらのプランが実行できているかのKPI。</p>
+    <h3><span class="tag">3</span>マリノスの危険なロスト</h3>
+    <p>前節の神戸版と同じ基準を、今日は<strong>自分たちに向ける</strong>。次の3つが揃ったときだけ1回。</p>
     <ul>
-      <li><strong>仕掛け</strong> — 前向きに1v1を挑んだ、または数的優位で侵入した</li>
-      <li><strong>クロス</strong> — その仕掛けがクロスまで到達した（成否は問わない）</li>
+      <li><strong>自陣</strong> — ハーフウェイラインよりマリノス側</li>
+      <li><strong>中央</strong> — 縦3分割の真ん中</li>
+      <li><strong>福島が前を向けた</strong> — 奪われて前方にプレーされた</li>
     </ul>
-    <p><strong>こちらは両方押す。</strong>仕掛けてクロスまで行ったら2タップ。仕掛け10／クロス6 なら到達率60%。</p>
-    <p class="q">数えないもの：ただ回しただけの横パス、後ろ向きで受けてのバックパス、押し込まれた時間の蹴り出し。「壊しにいった回数」だけ。</p>
-    <table>
-      <tr><td>仕掛けが少ない（前半5回未満）</td><td>狙いが未伝達／対策済み</td></tr>
-      <tr><td>仕掛け多いがクロス低い</td><td>1v1で勝てていない</td></tr>
-      <tr><td>両方多いが無得点</td><td>中の枚数が足りない</td></tr>
-    </table>
+    <p><strong>ボタンはどちらか一方だけ。</strong>その流れで福島がシュートまで行けば「→被シュート」、行かなければ「ロスト」。</p>
+    <p class="q">控え組のGK・CBのビルドアップ耐性がそのまま出る数字。前半3回以上なら、繋ぎの練度は主力と別物ということ。ジャイキリの芽は全部ここから生える。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">HT</span>ハーフタイムに見るもの</h3>
     <ul>
-      <li>横浜のセカンド回収率。50%を割っていたら競り方か配置の問題</li>
-      <li>エリア別の偏り。自陣で拾えていないなら押し込まれている</li>
-      <li>危険なロストの発生ペース</li>
-      <li>右攻略の実行回数。少なければ指示が届いていない</li>
+      <li>プレス成功率。50%を切っていたら後半は行き方を変えるはず</li>
+      <li>崩しの経路の偏り。片側だけなら逆サイドの選手はアピールできていない</li>
+      <li>危険なロストの数。J3相手にかさむようなら赤信号</li>
+      <li>スコアが動かないまま60分を過ぎたら主力投入の時間帯に注目</li>
     </ul>
-    <p class="q">記録は1タップごとに端末に保存される。アプリを閉じても消えない。</p>
+    <p class="q">天皇杯は同点なら延長→PK。延長に入ったら「延長」ボタン（90分から再開）。記録は1タップごとに端末保存。</p>
   </div>
 
 </div>
@@ -237,8 +219,7 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
       <button class="big a" id="bCopy">テキストをコピー</button>
     </div>
     <textarea id="outText" readonly></textarea>
-    <p class="note">終了後はこのテキストをコピーして共有できます。<br>
-    バックアップ用の復元コードは下です。別の端末に移すときは、これをコピーして貼り付け→復元。</p>
+    <p class="note">バックアップ用の復元コード。別の端末に移すときはコピーして貼り付け→復元。</p>
     <textarea id="backup" style="height:90px" readonly></textarea>
     <div class="btns" style="margin-top:8px">
       <button class="mini" id="bImport" style="flex:1;min-height:44px">貼り付けて復元</button>
@@ -246,37 +227,77 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
   </div>
 </div>
 
+<style>
+.help{width:20px;height:20px;padding:0;border-radius:50%;border:1px solid var(--line);
+  background:transparent;color:var(--dim);font-size:11px;font-family:'Oswald',sans-serif;
+  line-height:1;vertical-align:middle;margin-left:2px;}
+</style>
+
 <script>
 "use strict";
-const KEY = "tally_yfm_kobe_20260822";
-const ZONES = [{id:"def",label:"自陣"},{id:"mid",label:"中盤"},{id:"att",label:"敵陣"}];
+const KEY = "tally_yfm_fksm_20260826";
+const ZONES = [{id:"L",label:"左"},{id:"C",label:"中央"},{id:"R",label:"右"}];
+const HALVES = [{h:1,label:"前半"},{h:2,label:"後半"},{h:3,label:"延長"}];
 const CHECKS = [
-  {id:"c1",text:"小松の守備の掛け方",hint:"人基準か、コース限定か",
-   opts:["GKまで直進","コース切って弧","前に出ない"]},
-  {id:"c2",text:"井手口の背後で天野が前を向けたか",hint:"バイタル中央。最初の3回",
-   opts:["楽に前向き","時々","消されている"]},
-  {id:"c3",text:"神戸の最終ラインの高さ",hint:"横浜が自陣で保持して落ち着いた瞬間に。15/30/60/75分＋変化を感じた時",
-   opts:["高い(HW越え)","中間","低い"]},
-  {id:"c4",text:"前に出るIH",hint:"背後が空くのはどちら側か",
-   opts:["日髙","郷家","両方","井手口も出た","出ない"]},
-  {id:"c5",text:"神戸の交代",hint:"押した時刻が記録されます",
-   opts:["攻撃的カード","守備固め","同時2枚以上"]},
-  {id:"c6",text:"神戸が追いかける展開になったら",hint:"神戸ビハインド時の変化",
-   opts:["3バック可変","4バックのまま","ロングスロー増","パワープレー"]},
-  {id:"c7",text:"神戸がリードしたら",hint:"締め方",
-   opts:["ライン下げる","前から続行","時間を使う"]}
+  {id:"c0",text:"福島の並び（開始5分で確認）",hint:"入れ替わったら再度押す",
+   opts:["4-1-2-3","別の布陣","佐々木が右","鈴が右"]},
+  {id:"c1",text:"入りの強度（最初の15分）",hint:"控え組の集中",
+   opts:["締まっている","普通","緩い"]},
+  {id:"c2",text:"ビルドアップの型",hint:"主力の設計を再現できているか",
+   opts:["主力と同じ型","別の設計","蹴るだけ"]},
+  {id:"c3",text:"強度の持続",hint:"60分・75分あたりで",
+   opts:["落ちない","60分から低下","早々に低下"]},
+  {id:"c4",text:"三浦知良（カズ）",hint:"出てきたら時刻ごと記録",
+   opts:["先発","途中出場","出場なし"]},
+  {id:"c5",text:"マリノス主力投入",hint:"押した時刻が記録される。誰かはメモで",
+   opts:["リード時","同点時","ビハインド時"]},
+  {id:"c6",text:"アピールした選手",hint:"名前はメモに",
+   opts:["◎いた","○まずまず","△物足りない"]}
 ];
 function entriesOf(id){
   const v = state.checks[id] || {};
   if (Array.isArray(v.entries)) return v.entries;
-  if (v.min != null) return [{min:v.min, opt:"記録"}];   // 旧データの移行
   return [];
 }
 
-let state = { events:[], checks:{}, half:1, secs:0, zone:"mid", updated:0 };
-let running = false, tick = null;
+let state = { events:[], checks:{}, half:1, zone:"C",
+              running:false, anchorSecs:0, anchorEpoch:0, updated:0 };
 
-/* ---------- persistence: 端末内(localStorage)を主、クラウドがあれば従 ---------- */
+/* ---------- 実時刻ベースの時計（閉じていても進む） ---------- */
+function nowSecs(){
+  if(!state.running) return state.anchorSecs;
+  return state.anchorSecs + Math.floor((Date.now() - state.anchorEpoch)/1000);
+}
+function minute(){ return Math.floor(nowSecs()/60); }
+function paintClock(){
+  const s = Math.max(0, nowSecs());
+  document.getElementById("mm").textContent = String(Math.floor(s/60)).padStart(2,"0");
+  document.getElementById("ss").textContent = String(s%60).padStart(2,"0");
+}
+function setRunning(v){
+  if(v && !state.running){
+    state.anchorEpoch = Date.now();
+    state.running = true;
+  } else if(!v && state.running){
+    state.anchorSecs = nowSecs();
+    state.running = false;
+  }
+  document.getElementById("bRun").textContent = state.running ? "停止" : "開始";
+  document.getElementById("bRun").classList.toggle("on", state.running);
+  saveLocal();
+}
+function jumpTo(baseSecs, half){
+  state.half = half;
+  state.anchorSecs = baseSecs;
+  state.anchorEpoch = Date.now();
+  state.running = true;
+  document.getElementById("bRun").textContent = "停止";
+  document.getElementById("bRun").classList.add("on");
+  saveLocal(); render();
+}
+setInterval(paintClock, 1000);
+
+/* ---------- 保存：端末内が主、クラウドがあれば従 ---------- */
 function saveLocal(){
   state.updated = Date.now();
   try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
@@ -294,26 +315,30 @@ async function load(){
   try { if(window.storage){ const r=await window.storage.get(KEY,false); if(r&&r.value) b=JSON.parse(r.value); } } catch(e){}
   const pick = !a ? b : !b ? a : ((a.updated||0) >= (b.updated||0) ? a : b);
   if (pick) state = Object.assign(state, pick);
+  document.getElementById("bRun").textContent = state.running ? "停止" : "開始";
+  document.getElementById("bRun").classList.toggle("on", state.running);
   render();
 }
 let saveFlag=false;
 function flashSaved(){ saveFlag=true; setTimeout(()=>{saveFlag=false; paintLast();},1200); }
 
-/* ---------- clock ---------- */
-function setRunning(v){
-  running=v;
-  document.getElementById("bRun").textContent = v ? "停止" : "開始";
-  document.getElementById("bRun").classList.toggle("on", v);
-  clearInterval(tick);
-  if(v) tick=setInterval(()=>{ state.secs++; paintClock(); if(state.secs%10===0) saveLocal(); },1000);
-}
-function minute(){ return Math.floor(state.secs/60); }
-function paintClock(){
-  document.getElementById("mm").textContent = String(minute()).padStart(2,"0");
-  document.getElementById("ss").textContent = String(state.secs%60).padStart(2,"0");
+/* ---------- 記録 ---------- */
+const c = f => state.events.filter(f).length;
+const pW = ()=>c(e=>e.type==="press"&&e.win);
+const pL = ()=>c(e=>e.type==="press"&&!e.win);
+const cS = ()=>c(e=>e.type==="chance");
+const cB = ()=>c(e=>e.type==="chance"&&e.big);
+const lA = ()=>c(e=>e.type==="loss");
+const lS = ()=>c(e=>e.type==="loss"&&e.shot);
+
+function log(ev){
+  if(navigator.vibrate) navigator.vibrate(12);
+  ev.half=state.half; ev.min=minute(); ev.id=Date.now()+Math.random();
+  state.events.push(ev);
+  saveLocal(); render();
 }
 
-/* ---------- tally marks ---------- */
+/* ---------- 描画 ---------- */
 function gate(el, n, color){
   if(!n){ el.innerHTML = '<span class="gempty">—</span>'; return; }
   let h="";
@@ -328,75 +353,54 @@ function gate(el, n, color){
   }
   el.innerHTML=h;
 }
-
-/* ---------- counting ---------- */
-const c = f => state.events.filter(f).length;
-const secK = ()=>c(e=>e.type==="second"&&e.team==="kobe");
-const secY = ()=>c(e=>e.type==="second"&&e.team==="yfm");
-const lossA= ()=>c(e=>e.type==="loss");
-const lossS= ()=>c(e=>e.type==="loss"&&e.shot);
-const rTry = ()=>c(e=>e.type==="right"&&e.kind==="attempt");
-const rCr  = ()=>c(e=>e.type==="right"&&e.kind==="cross");
-
-function log(ev){
-  if(navigator.vibrate) navigator.vibrate(12);
-  ev.half=state.half; ev.min=minute(); ev.id=Date.now()+Math.random();
-  state.events.push(ev);
-  saveLocal(); render();
-}
-
-/* ---------- render ---------- */
 function paintLast(){
   const e=state.events[state.events.length-1];
   let t = !e ? "まだ記録なし"
-    : e.type==="second" ? `${e.min}' セカンド ${e.team==="kobe"?"神戸":"横浜"}`
-    : e.type==="loss" ? `${e.min}' 神戸ロスト${e.shot?"→シュート":""}`
-    : `${e.min}' 右${e.kind==="cross"?"クロス":"仕掛け"}`;
+    : e.type==="press" ? `${e.min}' プレス${e.win?"奪取":"剥がされ"}`
+    : e.type==="chance" ? `${e.min}' ${e.big?"決定機":"シュート"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`
+    : `${e.min}' ロスト${e.shot?"→被シュート":""}`;
   document.getElementById("lastev").innerHTML = t + (saveFlag?' <span class="savedot">・保存</span>':"");
   document.getElementById("bUndo").disabled = !state.events.length;
 }
-
 function render(){
   paintClock();
   document.getElementById("bHalf").classList.toggle("on", state.half===2);
+  document.getElementById("bET").classList.toggle("on", state.half===3);
 
-  const k=secK(), y=secY(), tot=k+y;
-  document.getElementById("s2").innerHTML = `${k} － ${y}` + (tot?` <span class="sub">横浜${Math.round(y/tot*100)}%</span>`:"");
-  gate(document.getElementById("g2k"), k, "#B8203F");
-  gate(document.getElementById("g2y"), y, "#3B6BD6");
-  document.getElementById("sL").innerHTML = `${lossA()} <span class="sub">/ 決定機${lossS()}</span>`;
-  gate(document.getElementById("gL"), lossA(), "#E5B143");
-  document.getElementById("sR").innerHTML = `${rTry()} <span class="sub">/ クロス${rCr()}</span>`;
-  gate(document.getElementById("gR"), rTry(), "#E9F0EA");
+  const w=pW(), l=pL(), tot=w+l;
+  document.getElementById("sP").innerHTML = `${w} － ${l}` + (tot?` <span class="sub">成功${Math.round(w/tot*100)}%</span>`:"");
+  gate(document.getElementById("gPw"), w, "#3B6BD6");
+  gate(document.getElementById("gPl"), l, "#B8203F");
 
-  // zones
+  document.getElementById("sC").innerHTML = `${cS()} <span class="sub">/ 決定機${cB()}</span>`;
+  gate(document.getElementById("gC"), cS(), "#E9F0EA");
   const zw=document.getElementById("zones");
   zw.innerHTML = ZONES.map(z=>`<button class="pill${state.zone===z.id?" on":""}" data-zone="${z.id}">${z.label}</button>`).join("");
 
-  // summary
-  const rt = tot?Math.round(y/tot*100):null;
+  document.getElementById("sL").innerHTML = `${lA()} <span class="sub">/ 被シュート${lS()}</span>`;
+  gate(document.getElementById("gL"), lA(), "#E5B143");
+
+  const rt = tot?Math.round(w/tot*100):null;
   const rEl=document.getElementById("rate");
   rEl.textContent = rt===null?"—":rt+"%";
-  rEl.style.color = rt===null?"var(--line)":(rt>=50?"var(--yfm)":"var(--kobe)");
-  document.getElementById("rk").textContent="神戸 "+k;
-  document.getElementById("ry").textContent="横浜 "+y;
+  rEl.style.color = rt===null?"var(--line)":(rt>=50?"var(--yfm)":"var(--neg)");
+  document.getElementById("rw").textContent="奪取 "+w;
+  document.getElementById("rl").textContent="剥がされ "+l;
+
   document.getElementById("tz").innerHTML = ZONES.map(z=>{
-    const a=c(e=>e.type==="second"&&e.team==="kobe"&&e.zone===z.id);
-    const b=c(e=>e.type==="second"&&e.team==="yfm"&&e.zone===z.id);
-    const t=a+b;
-    return `<tr><td>${z.label}</td><td class="num">${a}</td><td class="num">${b}</td><td>${t?Math.round(b/t*100)+"%":"—"}</td></tr>`;
+    const s=c(e=>e.type==="chance"&&e.zone===z.id);
+    const b=c(e=>e.type==="chance"&&e.zone===z.id&&e.big);
+    return `<tr><td>${z.label}</td><td class="num">${s}</td><td class="num">${b}</td></tr>`;
   }).join("");
-  document.getElementById("th").innerHTML = [1,2].map(h=>{
-    const f=e=>e.half===h;
-    const a=c(e=>f(e)&&e.type==="second"&&e.team==="kobe");
-    const b=c(e=>f(e)&&e.type==="second"&&e.team==="yfm");
-    const l=c(e=>f(e)&&e.type==="loss"), ls=c(e=>f(e)&&e.type==="loss"&&e.shot);
-    const t1=c(e=>f(e)&&e.type==="right"&&e.kind==="attempt");
-    const t2=c(e=>f(e)&&e.type==="right"&&e.kind==="cross");
-    return `<tr><td>${h===1?"前半":"後半"}</td><td class="num">${a}–${b}</td><td class="num">${l}<span class="sub">/${ls}</span></td><td class="num">${t1}<span class="sub">/${t2}</span></td></tr>`;
+  document.getElementById("th").innerHTML = HALVES.map(hv=>{
+    const f=e=>e.half===hv.h;
+    const a=c(e=>f(e)&&e.type==="press"&&e.win), d=c(e=>f(e)&&e.type==="press"&&!e.win);
+    const s=c(e=>f(e)&&e.type==="chance"), b=c(e=>f(e)&&e.type==="chance"&&e.big);
+    const lo=c(e=>f(e)&&e.type==="loss"), ls=c(e=>f(e)&&e.type==="loss"&&e.shot);
+    if(hv.h===3 && !(a+d+s+lo)) return "";
+    return `<tr><td>${hv.label}</td><td class="num">${a}<span class="sub">/${d}</span></td><td class="num">${s}<span class="sub">/${b}</span></td><td class="num">${lo}<span class="sub">/${ls}</span></td></tr>`;
   }).join("");
 
-  // checks
   document.getElementById("checks").innerHTML = CHECKS.map(ch=>{
     const v = state.checks[ch.id] || {};
     const en = entriesOf(ch.id);
@@ -419,28 +423,32 @@ function render(){
 }
 
 function buildText(){
-  const L=[]; const k=secK(),y=secY(),t=k+y;
-  L.push("横浜FM vs 神戸 / 2026.8.22 日産スタジアム","");
-  L.push("■ セカンドボール回収");
-  L.push(`合計  神戸 ${k} － ${y} 横浜FM`+(t?`（横浜 ${Math.round(y/t*100)}%）`:""));
+  const L=[]; const w=pW(), l=pL(), t=w+l;
+  L.push("横浜FM vs 福島 / 天皇杯2回戦 2026.8.26 日産スタジアム","");
+  L.push("■ 敵陣プレス（マリノス）");
+  L.push(`奪取 ${w} － 剥がされ ${l}`+(t?`（成功率 ${Math.round(w/t*100)}%）`:""));
+  L.push("","■ 崩しの経路（流れの中のシュート到達）");
+  L.push(`計 ${cS()} / うち決定機 ${cB()}`);
   ZONES.forEach(z=>{
-    const a=c(e=>e.type==="second"&&e.team==="kobe"&&e.zone===z.id);
-    const b=c(e=>e.type==="second"&&e.team==="yfm"&&e.zone===z.id);
-    if(a+b) L.push(`${z.label}  神戸 ${a} － ${b} 横浜FM`);
+    const s=c(e=>e.type==="chance"&&e.zone===z.id);
+    const b=c(e=>e.type==="chance"&&e.zone===z.id&&e.big);
+    if(s) L.push(`${z.label}  ${s}（決定機${b}）`);
   });
-  [1,2].forEach(h=>{
-    const a=c(e=>e.half===h&&e.type==="second"&&e.team==="kobe");
-    const b=c(e=>e.half===h&&e.type==="second"&&e.team==="yfm");
-    if(a+b) L.push(`${h===1?"前半":"後半"}  神戸 ${a} － ${b} 横浜FM`);
+  L.push("","■ マリノスの危険なロスト（自陣・中央）");
+  L.push(`${lA()}回 / うち被シュート ${lS()}回`);
+  L.push("","■ 時間帯別");
+  HALVES.forEach(hv=>{
+    const f=e=>e.half===hv.h;
+    const a=c(e=>f(e)&&e.type==="press"&&e.win), d=c(e=>f(e)&&e.type==="press"&&!e.win);
+    const s=c(e=>f(e)&&e.type==="chance"), lo=c(e=>f(e)&&e.type==="loss");
+    if(a+d+s+lo) L.push(`${hv.label}  プレス${a}/${d}  崩し${s}  ロスト${lo}`);
   });
-  L.push("","■ 神戸の危険なロスト（自陣・中央）",`${lossA()}回 / うちシュート到達 ${lossS()}回`);
-  L.push("","■ 神戸の右サイド攻略",`仕掛け ${rTry()} / クロス到達 ${rCr()}`);
   L.push("","■ タイムライン");
   state.events.forEach(e=>{
     let s=`${e.min}'`;
-    if(e.type==="second") s+=` セカンド ${e.team==="kobe"?"神戸":"横浜"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`;
-    if(e.type==="loss") s+=` 神戸ロスト${e.shot?" → シュート":""}`;
-    if(e.type==="right") s+=` 右サイド${e.kind==="cross"?" クロス":" 仕掛け"}`;
+    if(e.type==="press") s+=` プレス${e.win?"奪取":"剥がされ"}`;
+    if(e.type==="chance") s+=` ${e.big?"決定機":"シュート"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`;
+    if(e.type==="loss") s+=` ロスト${e.shot?" → 被シュート":""}`;
     L.push(s);
   });
   const ns=CHECKS.filter(ch=>{const v=state.checks[ch.id]||{}; return entriesOf(ch.id).length||v.note;});
@@ -456,18 +464,18 @@ function buildText(){
   return L.join("\n");
 }
 
-/* ---------- events ---------- */
+/* ---------- 操作 ---------- */
 document.addEventListener("click", e=>{
   const b=e.target.closest("button"); if(!b) return;
 
   if(b.dataset.log){
     const m=b.dataset.log;
-    if(m==="sec-kobe") log({type:"second",team:"kobe",zone:state.zone});
-    if(m==="sec-yfm")  log({type:"second",team:"yfm",zone:state.zone});
-    if(m==="loss-0")   log({type:"loss",shot:false});
-    if(m==="loss-1")   log({type:"loss",shot:true});
-    if(m==="right-try")   log({type:"right",kind:"attempt"});
-    if(m==="right-cross") log({type:"right",kind:"cross"});
+    if(m==="press-win")   log({type:"press",win:true});
+    if(m==="press-lost")  log({type:"press",win:false});
+    if(m==="chance-shot") log({type:"chance",big:false,zone:state.zone});
+    if(m==="chance-big")  log({type:"chance",big:true,zone:state.zone});
+    if(m==="loss-0")      log({type:"loss",shot:false});
+    if(m==="loss-1")      log({type:"loss",shot:true});
     return;
   }
   if(b.dataset.zone){ state.zone=b.dataset.zone; saveLocal(); render(); return; }
@@ -475,7 +483,7 @@ document.addEventListener("click", e=>{
     const [id,opt]=b.dataset.opt.split("|");
     const en=entriesOf(id).slice();
     en.push({min:minute(),opt:opt});
-    state.checks[id]=Object.assign({},state.checks[id],{entries:en,min:undefined});
+    state.checks[id]=Object.assign({},state.checks[id],{entries:en});
     if(navigator.vibrate) navigator.vibrate(12);
     saveLocal(); render(); return;
   }
@@ -483,7 +491,7 @@ document.addEventListener("click", e=>{
     const [id,i]=b.dataset.delchip.split("|");
     const en=entriesOf(id).slice();
     en.splice(Number(i),1);
-    state.checks[id]=Object.assign({},state.checks[id],{entries:en,min:undefined});
+    state.checks[id]=Object.assign({},state.checks[id],{entries:en});
     saveLocal(); render(); return;
   }
   if(b.dataset.memo){
@@ -503,15 +511,18 @@ document.addEventListener("click", e=>{
     return;
   }
   switch(b.id){
-    case "bRun": setRunning(!running); break;
-    case "bDown": state.secs=Math.max(0,state.secs-60); paintClock(); saveLocal(); break;
-    case "bUp": state.secs+=60; paintClock(); saveLocal(); break;
-    case "bHalf": state.half=2; state.secs=45*60; setRunning(true); saveLocal(); render(); break;
+    case "bRun": setRunning(!state.running); paintClock(); break;
+    case "bDown": state.anchorSecs=Math.max(0,state.anchorSecs-60); paintClock(); saveLocal(); break;
+    case "bUp": state.anchorSecs+=60; paintClock(); saveLocal(); break;
+    case "bHalf": jumpTo(45*60, 2); break;
+    case "bET": jumpTo(90*60, 3); break;
     case "bUndo": state.events.pop(); saveLocal(); render(); break;
     case "bReset":
       if(confirm("記録を全部消します。よろしいですか？")){
-        state={events:[],checks:{},half:1,secs:0,zone:"mid",updated:0};
-        setRunning(false); saveLocal(); render();
+        state={events:[],checks:{},half:1,zone:"C",running:false,anchorSecs:0,anchorEpoch:0,updated:0};
+        document.getElementById("bRun").textContent="開始";
+        document.getElementById("bRun").classList.remove("on");
+        saveLocal(); render();
       }
       break;
     case "bCopy":
@@ -524,8 +535,8 @@ document.addEventListener("click", e=>{
       if(!s) return;
       try{
         const d=JSON.parse(s);
-        if(!d || !Array.isArray(d.events)) throw new Error("形式が違います");
-        state=Object.assign({events:[],checks:{},half:1,secs:0,zone:"mid",updated:0},d);
+        if(!d || !Array.isArray(d.events)) throw new Error("bad");
+        state=Object.assign({events:[],checks:{},half:1,zone:"C",running:false,anchorSecs:0,anchorEpoch:0,updated:0},d);
         saveLocal(); render(); alert("復元しました");
       }catch(err){ alert("復元できません。コード全体をコピーできているか確認してください。"); }
       break;
@@ -533,17 +544,7 @@ document.addEventListener("click", e=>{
   }
 });
 
-document.addEventListener("input", e=>{
-  if(e.target.dataset && e.target.dataset.note){
-    const id=e.target.dataset.note;
-    state.checks[id]=Object.assign({},state.checks[id],{note:e.target.value});
-    saveLocal();
-    document.getElementById("outText").value=buildText();
-    document.getElementById("backup").value=JSON.stringify(state);
-  }
-});
-
-document.addEventListener("visibilitychange", ()=>{ if(document.hidden) saveLocal(); });
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden){ paintClock(); } else { saveLocal(); } });
 window.addEventListener("pagehide", saveLocal);
 
 load();
