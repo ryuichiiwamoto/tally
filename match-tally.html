@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>タリー 浦和–横浜FM（J1第4節）</title>
+<title>タリー 横浜FM–京都（J1第5節）</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap');
 :root{
@@ -89,7 +89,7 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 </head>
 <body>
 
-<div class="eyebrow">浦和 — 横浜FM / J1第4節 8.29 埼スタ</div>
+<div class="eyebrow">横浜FM — 京都 / J1第5節 9.2 日産</div>
 <div class="clockbar">
   <div class="clock"><span id="mm">00</span><span class="sec">:<span id="ss">00</span></span></div>
   <div class="ctl">
@@ -111,12 +111,12 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <div id="pane-rec">
   <div class="block">
-    <div class="blabel"><span>敵陣プレス（マリノス） <button class="help" data-tab="def">?</button></span><span class="score" id="sP"></span></div>
+    <div class="blabel"><span>クロス到達（マリノス） <button class="help" data-tab="def">?</button></span><span class="score" id="sP"></span></div>
     <div class="gwrap" id="gPw"></div>
     <div class="gwrap" id="gPl"></div>
     <div class="btns">
-      <button class="big y" data-log="press-win">敵陣で奪った</button>
-      <button class="big k" data-log="press-lost">剥がされた</button>
+      <button class="big y" data-log="press-win">エリア内に届いた</button>
+      <button class="big k" data-log="press-lost">跳ね返された</button>
     </div>
   </div>
 
@@ -148,9 +148,9 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <div id="pane-sum" hidden>
   <div class="block">
-    <div class="blabel"><span>敵陣プレスの成功率</span></div>
+    <div class="blabel"><span>クロス到達率</span></div>
     <div class="hero" id="rate">—</div>
-    <div class="rowlab"><span id="rw">奪取 0</span><span id="rl">剥がされ 0</span></div>
+    <div class="rowlab"><span id="rw">到達 0</span><span id="rl">跳ね返し 0</span></div>
   </div>
   <div class="block">
     <div class="blabel"><span>崩しの経路（エリア別）</span></div>
@@ -158,8 +158,8 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
   </div>
   <div class="block">
     <div class="blabel"><span>時間帯別</span></div>
-    <table><thead><tr><th></th><th>プレス</th><th>崩し</th><th>ロスト</th></tr></thead><tbody id="th"></tbody></table>
-    <div class="rowlab" style="margin-top:8px"><span>プレス＝奪取/剥がされ</span><span>崩し＝計/決定機・ロスト＝計/被シュート</span></div>
+    <table><thead><tr><th></th><th>クロス</th><th>崩し</th><th>ロスト</th></tr></thead><tbody id="th"></tbody></table>
+    <div class="rowlab" style="margin-top:8px"><span>クロス＝到達/跳ね返し</span><span>崩し＝計/決定機・ロスト＝計/被シュート</span></div>
   </div>
 </div>
 
@@ -168,48 +168,48 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 <div id="pane-def" hidden>
 
   <div class="block def">
-    <h3><span class="tag">1</span>敵陣プレス（マリノス）</h3>
-    <p>浦和の可変ビルドアップは<strong>「可変で空けたスペースを使う2手目」が未整備</strong>（町田戦で実証）。西川・CBに圧をかけ続ければ詰まるはず。その検証。</p>
+    <h3><span class="tag">1</span>クロス到達（マリノス）</h3>
+    <p>京都の守備は<strong>「中央を固めてサイドはある程度捨てる」</strong>設計（福岡戦で確認）。右SBは福田の離脱でJ1初先発の石田（23歳・J2で130試合超の本職DF）。個の適性はあるが、<strong>ウェベルトン・新井との連係と、J1のスピードへの適応は今日が初テスト</strong>。大外は構造的に運ばせてくれるはずで、問題はクロスがエリア内まで届くか。</p>
     <ul>
-      <li><span class="yes">奪った</span> — 敵陣でプレスから奪取し、マイボールにした</li>
-      <li><span class="no">剥がされた</span> — 前から行ったが、繋がれて中盤ラインを越えられた</li>
+      <li><span class="yes">エリア内に届いた</span> — 味方がエリア内で触れた（シュート・落とし・こぼれ含む）</li>
+      <li><span class="no">跳ね返された</span> — 最初のDFにクリアされた、GKにキャッチされた</li>
     </ul>
-    <p class="q">数えるのは「前から行った局面」だけ。アンカーが植木なら「受けさせて刈る」が有効、瀬古・グスタフソンなら受け方が上質なので剥がされが増えるはず。<strong>観察タブのアンカー確認とセットで意味を持つ数字。</strong></p>
-    <p class="q">目安：植木相手なら50%超を狙える。瀬古系で40%前後なら想定内。</p>
+    <p class="q">流れの中のクロスだけ（CKは除く）。早いクロスもロブも一律に数える。<strong>本数そのものが「サイドを捨てる守備」を突けた証拠</strong>で、到達率がその質。福岡はこれで京都にシュート倍の差をつけた。</p>
+    <p class="q">目安：前半で本数10本超、到達率40%超なら設計どおり。本数が伸びないなら大外の1対1で石田に勝てていないか、中央で詰まっている。三井寺vs石田の勝敗自体が今日の隠れた主役。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">2</span>崩しの経路（シュート到達）</h3>
-    <p>浦和の構造的弱点は<strong>①サイドチェンジ対応不可 ②大外の1対1 ③右SB長沼の背後</strong>。長沼サイド＝<strong>マリノスの左</strong>。仮説どおりなら左の数字が伸びるはず。エリアを選んでから押す。</p>
+    <p>京都は中央固めなので、浦和戦の「松村→谷村の中央縦パス」型は通りにくい想定。<strong>左（石田側＝連係を試せる側）が伸びるのが仮説</strong>。ただし石田個人はJ2実績のある本職DFなので、勝てないなら早めに見切って右や中央へ。エリアを選んでから押す。</p>
     <ul>
       <li><strong>シュート</strong> — 流れの中からシュートまで到達（枠内外は問わない）</li>
       <li><strong>決定機</strong> — 1点ものの決定機。この場合シュートは押さなくてよい。集計側で合算</li>
     </ul>
-    <p class="q">セットプレーは含めない。エリアは「最後の崩しの起点」側。サイドチェンジ→ファー詰めで取った場合は<strong>振った先（＝仕留めた側）</strong>で記録。左偏重なら長沼攻略が機能した証拠、右が伸びるなら林側も割れているということ。</p>
+    <p class="q">セットプレーは含めない。エリアは「最後の崩しの起点」側。クロス→ファーで仕留めた場合は<strong>クロスを上げた側</strong>で記録。中央が伸びるなら京都の中央固めが機能していない＝浦和戦の型がそのまま通っている。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">3</span>マリノスの危険なロスト</h3>
-    <p><strong>神戸戦・福島戦と2試合連続で出た構造課題。今日が本当のテスト。</strong>浦和は即時奪回と縦への矢印だけは本物なので、この数字がそのまま失点リスク。3つ揃ったときだけ1回。</p>
+    <p><strong>3試合連続の構造課題。</strong>京都の得点術は「相手が横に広がったトランジションの瞬間にDF間へ差し込む」——浦和戦の3失点目（サイドチェンジを狩られて南野）と<strong>同じ型が京都の得意技</strong>。3つ揃ったときだけ1回。</p>
     <ul>
       <li><strong>自陣</strong> — ハーフウェイラインよりマリノス側</li>
       <li><strong>中央</strong> — 縦3分割の真ん中</li>
-      <li><strong>浦和が前を向けた</strong> — 奪われて前方にプレーされた</li>
+      <li><strong>京都が前を向けた</strong> — 奪われて前方にプレーされた</li>
     </ul>
-    <p><strong>ボタンはどちらか一方だけ。</strong>その流れで浦和がシュートまで行けば「→被シュート」、行かなければ「ロスト」。</p>
-    <p class="q">回避の設計は「奪った最初のパスはアンカーの届く中央を避けて外か背後へ」。前半3回以上なら福島戦の再発＝浦和相手には失点している内容。</p>
+    <p><strong>ボタンはどちらか一方だけ。</strong>その流れで京都がシュートまで行けば「→被シュート」、行かなければ「ロスト」。</p>
+    <p class="q">今日は例外を1つ追加：<strong>サイドチェンジを狩られた場合は自陣でなくても「ロスト」として数える</strong>。横に広げる瞬間が京都の狙い目なので、そこだけ特別扱い。前半3回以上なら赤信号。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">HT</span>ハーフタイム・後半に見るもの</h3>
     <ul>
-      <li>危険なロストの数が最優先。3回以上なら後半は繋ぎ方を変えないと沈む</li>
-      <li>崩しの経路が左（長沼側）に偏っているか。偏っていないなら攻略が設計どおり出ていない</li>
-      <li>渡邊凌磨の「前を向いた」回数。5回を超えていたらバイタル管理が破綻気味</li>
-      <li>60分前後：浦和のプレス強度が落ちる時間帯（町田戦で確認済み）。仕掛けどころ</li>
-      <li>得点したら直後5分に集中。浦和は失点直後とセットプレーが脆い</li>
+      <li>クロス本数と到達率。本数が出ていて到達率が低いなら、ファーへの質か中の枚数の問題</li>
+      <li>崩しの経路が左に偏っているか。偏っていないなら福田不在を突けていない</li>
+      <li>京都は全試合「前半あんまり・後半よくなる」チーム。<strong>前半に仕留められたか</strong>がHTの最大の問い</li>
+      <li>ハウスのセーブ数。決定機の数に対してセーブが多いなら、シュートの質ではなく本数とこぼれで押す</li>
+      <li>京都はカウンター一辺倒で終盤に消耗する（福岡戦86分失点）。75分以降がクルークス・宮市の時間</li>
     </ul>
-    <p class="q">左SBは林でなく根本健太（町田戦から唯一の変更）。町田戦の非対称可変が同じ形で出るかは根本次第。終盤に水沼宏太（元マリノス）が出てきたらクロス・CKの質が一段上がるので警戒。記録は1タップごとに端末保存。</p>
+    <p class="q">「2点リードを守れない」は今季2度（鹿島・浦和）。リードしたら観察c5で得点直後の振る舞いを記録。セットプレーは長沢駿の高さに注意。記録は1タップごとに端末保存。</p>
   </div>
 
 </div>
@@ -236,21 +236,21 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <script>
 "use strict";
-const KEY = "tally_uraw_yfm_20260829";
+const KEY = "tally_yfm_kyoto_20260902";
 const ZONES = [{id:"L",label:"左"},{id:"C",label:"中央"},{id:"R",label:"右"}];
 const HALVES = [{h:1,label:"前半"},{h:2,label:"後半"},{h:3,label:"延長"}];
 const CHECKS = [
-  {id:"c0",text:"浦和のアンカー（開始5分で確認）",hint:"プレス設計の分岐点。交代で変わったら再度押す",
-   opts:["植木（受けさせて刈る）","瀬古orグスタフソン（外切り型）","その他"]},
-  {id:"c1",text:"入りの強度（最初の15分）",hint:"曺式の立ち上がりの圧をどう受けたか",
-   opts:["受け止めた","五分","押された"]},
-  {id:"c2",text:"浦和の可変ビルドアップ",hint:"確認できた型を押す（両方あり得る）",
-   opts:["ダウンスリー(植木降り)","非対称(左SB残し・長沼上げ)","可変なし"]},
-  {id:"c3",text:"渡邊凌磨",hint:"ライン間で前を向くたびに押す。時刻が残る",
+  {id:"c0",text:"京都の右SB（開始5分で確認）",hint:"福田の代役。エルゴラ本命は石田",
+   opts:["石田","佐藤が右に回る","その他"]},
+  {id:"c1",text:"京都の並び",hint:"福岡戦は4-1-2-3、可変で4-2-3-1",
+   opts:["4-1-2-3","4-2-3-1（マセイオ上げ）","4-4-2","その他"]},
+  {id:"c2",text:"ハウス（GK）",hint:"決定的セーブのたびに押す。時刻が残る",
+   opts:["ビッグセーブ","こぼした/ミス"]},
+  {id:"c3",text:"エリアス",hint:"前を向いて仕掛けた・撃ったたびに押す",
    opts:["前を向いた","→シュート/決定機に直結"]},
-  {id:"c4",text:"浦和の強度",hint:"町田戦はプレス60分前後で減衰",
-   opts:["60分前後で低下","最後まで落ちない"]},
-  {id:"c5",text:"得点直後の5分",hint:"浦和は失点直後が脆い。どちらだったか",
+  {id:"c4",text:"京都の質",hint:"「前半あんまり・後半よくなる」説の検証",
+   opts:["前半から来た","前半緩い","後半から上がった"]},
+  {id:"c5",text:"得点直後の5分",hint:"リードした後の振る舞い。今季2度守れず",
    opts:["畳み掛けた","受けに回った"]}
 ];
 function entriesOf(id){
@@ -355,7 +355,7 @@ function gate(el, n, color){
 function paintLast(){
   const e=state.events[state.events.length-1];
   let t = !e ? "まだ記録なし"
-    : e.type==="press" ? `${e.min}' プレス${e.win?"奪取":"剥がされ"}`
+    : e.type==="press" ? `${e.min}' クロス${e.win?"到達":"跳ね返し"}`
     : e.type==="chance" ? `${e.min}' ${e.big?"決定機":"シュート"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`
     : `${e.min}' ロスト${e.shot?"→被シュート":""}`;
   document.getElementById("lastev").innerHTML = t + (saveFlag?' <span class="savedot">・保存</span>':"");
@@ -383,8 +383,8 @@ function render(){
   const rEl=document.getElementById("rate");
   rEl.textContent = rt===null?"—":rt+"%";
   rEl.style.color = rt===null?"var(--line)":(rt>=50?"var(--yfm)":"var(--neg)");
-  document.getElementById("rw").textContent="奪取 "+w;
-  document.getElementById("rl").textContent="剥がされ "+l;
+  document.getElementById("rw").textContent="到達 "+w;
+  document.getElementById("rl").textContent="跳ね返し "+l;
 
   document.getElementById("tz").innerHTML = ZONES.map(z=>{
     const s=c(e=>e.type==="chance"&&e.zone===z.id);
@@ -423,9 +423,9 @@ function render(){
 
 function buildText(){
   const L=[]; const w=pW(), l=pL(), t=w+l;
-  L.push("浦和 vs 横浜FM / J1第4節 2026.8.29 埼玉スタジアム","");
-  L.push("■ 敵陣プレス（マリノス）");
-  L.push(`奪取 ${w} － 剥がされ ${l}`+(t?`（成功率 ${Math.round(w/t*100)}%）`:""));
+  L.push("横浜FM vs 京都 / J1第5節 2026.9.2 日産スタジアム","");
+  L.push("■ クロス到達（マリノス）");
+  L.push(`到達 ${w} － 跳ね返し ${l}`+(t?`（到達率 ${Math.round(w/t*100)}%）`:""));
   L.push("","■ 崩しの経路（流れの中のシュート到達）");
   L.push(`計 ${cS()} / うち決定機 ${cB()}`);
   ZONES.forEach(z=>{
@@ -440,12 +440,12 @@ function buildText(){
     const f=e=>e.half===hv.h;
     const a=c(e=>f(e)&&e.type==="press"&&e.win), d=c(e=>f(e)&&e.type==="press"&&!e.win);
     const s=c(e=>f(e)&&e.type==="chance"), lo=c(e=>f(e)&&e.type==="loss");
-    if(a+d+s+lo) L.push(`${hv.label}  プレス${a}/${d}  崩し${s}  ロスト${lo}`);
+    if(a+d+s+lo) L.push(`${hv.label}  クロス${a}/${d}  崩し${s}  ロスト${lo}`);
   });
   L.push("","■ タイムライン");
   state.events.forEach(e=>{
     let s=`${e.min}'`;
-    if(e.type==="press") s+=` プレス${e.win?"奪取":"剥がされ"}`;
+    if(e.type==="press") s+=` クロス${e.win?"到達":"跳ね返し"}`;
     if(e.type==="chance") s+=` ${e.big?"決定機":"シュート"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`;
     if(e.type==="loss") s+=` ロスト${e.shot?" → 被シュート":""}`;
     L.push(s);
