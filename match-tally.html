@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>タリー 町田–横浜FM（J1第7節）</title>
+<title>タリー 横浜FM–水戸（J1第8節）</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap');
 :root{
@@ -89,7 +89,7 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 </head>
 <body>
 
-<div class="eyebrow">町田 — 横浜FM / J1第7節 9.12 MUFG</div>
+<div class="eyebrow">横浜FM — 水戸 / J1第8節 9.19 日産</div>
 <div class="clockbar">
   <div class="clock"><span id="mm">00</span><span class="sec">:<span id="ss">00</span></span></div>
   <div class="ctl">
@@ -111,12 +111,12 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <div id="pane-rec">
   <div class="block">
-    <div class="blabel"><span>シャドー管理（守備） <button class="help" data-tab="def">?</button></span><span class="score" id="sP"></span></div>
+    <div class="blabel"><span>敵陣プレス（マリノス） <button class="help" data-tab="def">?</button></span><span class="score" id="sP"></span></div>
     <div class="gwrap" id="gPw"></div>
     <div class="gwrap" id="gPl"></div>
     <div class="btns">
-      <button class="big y" data-log="press-win">潰した/向かせず</button>
-      <button class="big k" data-log="press-lost">前を向かれた</button>
+      <button class="big y" data-log="press-win">敵陣で奪った</button>
+      <button class="big k" data-log="press-lost">剥がされた</button>
     </div>
   </div>
 
@@ -148,9 +148,9 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <div id="pane-sum" hidden>
   <div class="block">
-    <div class="blabel"><span>シャドー管理成功率</span></div>
+    <div class="blabel"><span>敵陣プレスの成功率</span></div>
     <div class="hero" id="rate">—</div>
-    <div class="rowlab"><span id="rw">潰した 0</span><span id="rl">向かれた 0</span></div>
+    <div class="rowlab"><span id="rw">奪取 0</span><span id="rl">剥がされ 0</span></div>
   </div>
   <div class="block">
     <div class="blabel"><span>崩しの経路（エリア別）</span></div>
@@ -158,8 +158,8 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
   </div>
   <div class="block">
     <div class="blabel"><span>時間帯別</span></div>
-    <table><thead><tr><th></th><th>シャドー</th><th>崩し</th><th>ロスト</th></tr></thead><tbody id="th"></tbody></table>
-    <div class="rowlab" style="margin-top:8px"><span>シャドー＝潰した/向かれた</span><span>崩し＝計/決定機・ロスト＝計/被シュート</span></div>
+    <table><thead><tr><th></th><th>プレス</th><th>崩し</th><th>ロスト</th></tr></thead><tbody id="th"></tbody></table>
+    <div class="rowlab" style="margin-top:8px"><span>プレス＝奪取/剥がされ</span><span>崩し＝計/決定機・ロスト＝計/被シュート</span></div>
   </div>
 </div>
 
@@ -168,49 +168,48 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 <div id="pane-def" hidden>
 
   <div class="block def">
-    <h3><span class="tag">1</span>シャドー管理（守備）</h3>
-    <p>町田の2シャドーは<strong>相馬勇紀・西村拓真</strong>。特に相馬は内側にいて大外に流れる選手で、<strong>知念の脇→井上への受け渡しの瞬間</strong>にフリーになりやすい。柏戦（小泉・渡井を90分で5回前後に抑えた）と同じ運用で数える。</p>
+    <h3><span class="tag">1</span>敵陣プレス（マリノス）</h3>
+    <p>樹森監督自身が「<strong>ビルドアップの入り口に不安定さがある</strong>」と認めている相手。川崎戦も押し込まれて何もできず終わった。前から狩れるかの検証。</p>
     <ul>
-      <li><span class="yes">潰した/向かせず</span> — シャドーがライン間で受けた瞬間に潰した、前を向かせなかった、縦パスを遮断した</li>
-      <li><span class="no">前を向かれた</span> — ライン間で受けて前を向かれた（そこから何も起きなくても1回）</li>
+      <li><span class="yes">敵陣で奪った</span> — 敵陣でプレスから奪取し、マイボールにした</li>
+      <li><span class="no">剥がされた</span> — 前から行ったが、繋がれて中盤ラインを越えられた</li>
     </ul>
-    <p class="q">数えるのはライン間（松村・知念の脇〜背中）で受けた局面だけ。相馬が大外まで流れて受けたものはノーカウント（それは井上の1対1）。誰が潰したかはメモに。</p>
-    <p class="q">目安：柏戦並み（成功率60%超・前半「向かれた」3回以下）なら合格。相馬に前を向かれた直後の右足カットインが町田の先制点パターン。</p>
+    <p class="q">数えるのは「前から行った局面」だけ。西川に蹴らせた（=繋がせなかった）場合は「奪った」に含めてよい。水戸が最初から蹴ってくる展開なら母数は増えないので、無理に押さなくていい。</p>
+    <p class="q">目安：成功率50%超。春に2度勝てなかった相手だが、あの頃とはチームが別物（板倉談）。前から圧をかけ続けられるかが主導権の分かれ目。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">2</span>崩しの経路（シュート到達）</h3>
-    <p>町田は岡村欠場で<strong>望月がCBに回り、右WBは中村帆高</strong>。中村は攻撃参加型で上がった背後が空く＝<strong>マリノスの左（宮市）がカウンターの出口</strong>。町田は昌子・菊池の空中戦が強いので、中央より左右が伸びるのが健全。エリアを選んでから押す。</p>
+    <p>水戸は左SB大森（全試合フル出場・キッカー）が9/16に鹿島へ移籍。<strong>左サイドが再編</strong>されている。先発に河面はおらず、大崎か板倉が左に回る形。つまり<strong>マリノスの右（近藤・木村）が狙い目</strong>という仮説。エリアを選んでから押す。</p>
     <ul>
       <li><strong>シュート</strong> — 流れの中からシュートまで到達（枠内外は問わない）</li>
       <li><strong>決定機</strong> — 1点ものの決定機。この場合シュートは押さなくてよい。集計側で合算</li>
     </ul>
-    <p class="q">セットプレーは含めない。エリアは「最後の崩しの起点」側。町田は自陣奪取からのカウンターが得点源なので、うちが崩しの数を積めているのに点が入らない展開は「効率で負ける」典型（浦和戦の再現）。決定機の数と決定率をHTに確認。</p>
+    <p class="q">セットプレーは含めない。エリアは「最後の崩しの起点」側。水戸は板倉が「谷村を抑えることが役割」と公言＝<strong>中央が消される前提</strong>。左右が伸びるのが健全で、中央が伸びるなら谷村が上回ったということ。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">3</span>マリノスの危険なロスト</h3>
-    <p><strong>山根仮説の答え合わせ。</strong>柏戦（山根ボランチ）でゼロだった課題が、知念復帰・山根トップ下の並びで再発するか。町田の先制点パターンは「自陣奪取→カウンター→相馬」なので、この数字がそのまま失点確率。3つ揃ったときだけ1回。</p>
+    <p><strong>山根＋知念のボランチで再検証。</strong>柏戦（山根＋松村）はゼロ、町田戦（知念＋山根）は要確認。今日は両SBが木村・鈴木冬一に替わる編成で、ビルドアップの出口が普段と違う。水戸のプレッシングは本物（春に完封された）。3つ揃ったときだけ1回。</p>
     <ul>
       <li><strong>自陣</strong> — ハーフウェイラインよりマリノス側</li>
       <li><strong>中央</strong> — 縦3分割の真ん中</li>
-      <li><strong>町田が前を向けた</strong> — 奪われて前方にプレーされた</li>
+      <li><strong>水戸が前を向けた</strong> — 奪われて前方にプレーされた</li>
     </ul>
-    <p><strong>ボタンはどちらか一方だけ。</strong>その流れで町田がシュートまで行けば「→被シュート」、行かなければ「ロスト」。</p>
-    <p class="q">サイドチェンジを狩られた場合は自陣でなくても「ロスト」として数える。前半2回以下が合格ライン。3回以上なら「山根ボランチ説」に一票、ゼロなら「疲労説」に一票。</p>
+    <p><strong>ボタンはどちらか一方だけ。</strong>その流れで水戸がシュートまで行けば「→被シュート」、行かなければ「ロスト」。</p>
+    <p class="q">サイドチェンジを狩られた場合は自陣でなくても「ロスト」として数える。前半2回以下が合格ライン。渡邉新太・内野の2トップは「ゲームを決める選手」（コリカ監督）。</p>
   </div>
 
   <div class="block def">
     <h3><span class="tag">HT</span>ハーフタイム・後半に見るもの</h3>
     <ul>
-      <li>危険なロストの数（山根仮説）。前半2回以下か</li>
-      <li>シャドー管理成功率。相馬に前を向かれた回数が3回を超えていたら受け渡しの修正が必要</li>
-      <li>崩しの経路が左（中村の背後）に出ているか。決定機の数に対して得点が伴っているか</li>
-      <li>クロス→ファー守備（観察c2）。小川・明本・白崎の飛び込みに勝てているか</li>
-      <li>町田はCFのマンマークプレスが60分前後で減衰する説（レポート由来）。後半の仕掛けどころ</li>
-      <li>松尾・テテ・ネタ・ラヴィの投入時刻。町田は「後半勝負」で90分過ぎに突き放すチーム</li>
+      <li>プレス成功率50%超か。水戸に落ち着いて繋がれているなら前半のうちに行き方を変えるべき</li>
+      <li>危険なロストは2回以下か。SB2枚替えの影響が出ていないか</li>
+      <li>崩しの経路。右（水戸の再編された左）が伸びているか</li>
+      <li>天野の投入時刻（観察c7）。保持を増やしたいときのカード</li>
+      <li><strong>終盤の守り方が今日の最大テーマ</strong>。コリカ監督「入りは良いが、ゲームの終わらせ方に課題。90分、たまには97分98分続けること」。リード喪失は今季3度（鹿島・浦和・町田）</li>
     </ul>
-    <p class="q">望月CB・中村WBの右サイドは連係が新しい。宮市がそこを何回突けたかは総括の柱。町田は「内容で負けても効率で勝つ」チームなので、決定機を作ったら決めるまでがワンセット。記録は1タップごとに端末保存。</p>
+    <p class="q">内野航太郎はマリノスユース出身で恩返し弾を公言。松村との同期対決。谷村は代表初選出で得点ランク2位、板倉が名指しで対策を宣言している。記録は1タップごとに端末保存。</p>
   </div>
 
 </div>
@@ -237,26 +236,26 @@ button:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 
 <script>
 "use strict";
-const KEY = "tally_mcd_yfm_20260912";
+const KEY = "tally_yfm_mito_20260919";
 const ZONES = [{id:"L",label:"左"},{id:"C",label:"中央"},{id:"R",label:"右"}];
 const HALVES = [{h:1,label:"前半"},{h:2,label:"後半"},{h:3,label:"延長"}];
 const CHECKS = [
-  {id:"c0",text:"町田の並び（開始5分で確認）",hint:"3-4-2-1基準。望月CB・中村右WBを確認",
-   opts:["3-4-2-1","4バック化","その他"]},
-  {id:"c1",text:"入りの強度（最初の15分）",hint:"首位の圧をどう受けたか",
-   opts:["受け止めた","五分","押された"]},
-  {id:"c2",text:"クロス→ファー守備",hint:"町田のクロスがファーで合わされたら押す",
-   opts:["ファーで合わされた","跳ね返した/未然"]},
-  {id:"c3",text:"宮市の中村背後",hint:"右WB中村の背中を取れたら押す",
-   opts:["背後を取った","→シュートまで行った"]},
-  {id:"c4",text:"町田の強度",hint:"プレス60分減衰説の検証",
-   opts:["60分前後で低下","最後まで落ちない"]},
-  {id:"c5",text:"得点直後の5分",hint:"リード時の振る舞い",
+  {id:"c0",text:"水戸の左SBは誰（開始5分）",hint:"大森移籍の穴を誰が埋めるか。うちの右の相手",
+   opts:["大崎","板倉","その他"]},
+  {id:"c1",text:"入りの強度（最初の15分）",hint:"コリカ監督も自負する立ち上がり",
+   opts:["支配した","五分","押された"]},
+  {id:"c2",text:"内野航太郎",hint:"マリノスユース出身。仕掛け・シュートのたびに押す",
+   opts:["前を向いた","→シュート/決定機に直結"]},
+  {id:"c3",text:"谷村 vs 板倉",hint:"板倉「谷村を抑えるのが役割」の勝敗",
+   opts:["谷村が上回った","板倉が抑えた"]},
+  {id:"c4",text:"終盤の閉じ方（75分以降）",hint:"今季最大の課題。感触が変われば再度",
+   opts:["締まっている","危うい","崩れた"]},
+  {id:"c5",text:"得点直後の5分",hint:"リード時の振る舞い。今季3度守れず",
    opts:["畳み掛けた","受けに回った"]},
-  {id:"c6",text:"山根陸（トップ下）",hint:"感触が固まったら押す。変わったら再度",
-   opts:["◎効いている","○無難","△後手/消えた"]},
-  {id:"c7",text:"町田の交代",hint:"押した時刻が残る",
-   opts:["松尾投入","テテ/デューク投入","ネタ・ラヴィ投入"]}
+  {id:"c6",text:"両SB（木村・鈴木冬一）",hint:"初先発コンビの出来",
+   opts:["◎効いている","○無難","△後手"]},
+  {id:"c7",text:"交代",hint:"押した時刻が残る。名前はメモに",
+   opts:["天野投入","クルークス/三井寺投入","水戸の交代"]}
 ];
 function entriesOf(id){
   const v = state.checks[id] || {};
@@ -360,7 +359,7 @@ function gate(el, n, color){
 function paintLast(){
   const e=state.events[state.events.length-1];
   let t = !e ? "まだ記録なし"
-    : e.type==="press" ? `${e.min}' シャドー${e.win?"潰した":"向かれた"}`
+    : e.type==="press" ? `${e.min}' プレス${e.win?"奪取":"剥がされ"}`
     : e.type==="chance" ? `${e.min}' ${e.big?"決定機":"シュート"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`
     : `${e.min}' ロスト${e.shot?"→被シュート":""}`;
   document.getElementById("lastev").innerHTML = t + (saveFlag?' <span class="savedot">・保存</span>':"");
@@ -388,8 +387,8 @@ function render(){
   const rEl=document.getElementById("rate");
   rEl.textContent = rt===null?"—":rt+"%";
   rEl.style.color = rt===null?"var(--line)":(rt>=50?"var(--yfm)":"var(--neg)");
-  document.getElementById("rw").textContent="潰した "+w;
-  document.getElementById("rl").textContent="向かれた "+l;
+  document.getElementById("rw").textContent="奪取 "+w;
+  document.getElementById("rl").textContent="剥がされ "+l;
 
   document.getElementById("tz").innerHTML = ZONES.map(z=>{
     const s=c(e=>e.type==="chance"&&e.zone===z.id);
@@ -428,9 +427,9 @@ function render(){
 
 function buildText(){
   const L=[]; const w=pW(), l=pL(), t=w+l;
-  L.push("町田 vs 横浜FM / J1第7節 2026.9.12 MUFGスタジアム","");
-  L.push("■ シャドー管理（相馬・西村対応）");
-  L.push(`潰した ${w} － 向かれた ${l}`+(t?`（管理成功率 ${Math.round(w/t*100)}%）`:""));
+  L.push("横浜FM vs 水戸 / J1第8節 2026.9.19 日産スタジアム","");
+  L.push("■ 敵陣プレス（マリノス）");
+  L.push(`奪取 ${w} － 剥がされ ${l}`+(t?`（成功率 ${Math.round(w/t*100)}%）`:""));
   L.push("","■ 崩しの経路（流れの中のシュート到達）");
   L.push(`計 ${cS()} / うち決定機 ${cB()}`);
   ZONES.forEach(z=>{
@@ -445,12 +444,12 @@ function buildText(){
     const f=e=>e.half===hv.h;
     const a=c(e=>f(e)&&e.type==="press"&&e.win), d=c(e=>f(e)&&e.type==="press"&&!e.win);
     const s=c(e=>f(e)&&e.type==="chance"), lo=c(e=>f(e)&&e.type==="loss");
-    if(a+d+s+lo) L.push(`${hv.label}  シャドー${a}/${d}  崩し${s}  ロスト${lo}`);
+    if(a+d+s+lo) L.push(`${hv.label}  プレス${a}/${d}  崩し${s}  ロスト${lo}`);
   });
   L.push("","■ タイムライン");
   state.events.forEach(e=>{
     let s=`${e.min}'`;
-    if(e.type==="press") s+=` シャドー${e.win?"潰した":"向かれた"}`;
+    if(e.type==="press") s+=` プレス${e.win?"奪取":"剥がされ"}`;
     if(e.type==="chance") s+=` ${e.big?"決定機":"シュート"}（${(ZONES.find(z=>z.id===e.zone)||{}).label||""}）`;
     if(e.type==="loss") s+=` ロスト${e.shot?" → 被シュート":""}`;
     L.push(s);
